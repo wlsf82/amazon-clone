@@ -40,18 +40,18 @@ describe('Checkout', () => {
       cy.get('.checkoutProduct')
         .should('have.length', 2)
 
-      cy.removeFirstProductFromCart()
+      cy.removeFirstProductFromTheCart()
 
       cy.get('.checkoutProduct')
         .should('have.length', 1)
     })
 
-    it('updates to empty cart when remeoving all of them', () => {
+    it('updates to empty cart when removing all products', () => {
       cy.get('.checkoutProduct')
         .should('have.length', 2)
 
       Cypress._.times(2, () => {
-        cy.removeFirstProductFromCart()
+        cy.removeFirstProductFromTheCart()
       })
 
       cy.get('.checkoutProduct')

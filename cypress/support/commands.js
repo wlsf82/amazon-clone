@@ -19,7 +19,7 @@ Cypress.Commands.add('addTwoProductsToTheCart', () => {
   })
 })
 
-Cypress.Commands.add('removeFirstProductFromCart', () => {
+Cypress.Commands.add('removeFirstProductFromTheCart', () => {
   cy.get('.checkoutProduct__info > button')
     .first()
     .click()
