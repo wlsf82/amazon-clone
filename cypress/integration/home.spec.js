@@ -7,8 +7,6 @@ describe('Home', () => {
 
     cy.addTwoProductsToTheCart()
 
-    cy.get('.header__basketCount')
-      .should('be.visible')
-      .and('have.text', '2')
+    cy.assertCartHasNProducts(2)
   })
 })
