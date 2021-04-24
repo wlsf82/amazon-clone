@@ -1,25 +1,26 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('fillLoginForm', (userEmail, password) => {
+  cy.get('[type="email"]')
+      .type(userEmail)
+  cy.get('[type="password"]')
+    .type(password, { log: false })
+})
+
+Cypress.Commands.add('login', (userEmail, password) => {
+  cy.fillLoginForm(userEmail, password)
+  cy.get('.login__signInBtn')
+    .click()
+})
+
+Cypress.Commands.add('addTwoProductsToTheCart', () => {
+  Cypress._.times(2, () => {
+    cy.get('.product button')
+      .first()
+      .click()
+  })
+})
+
+Cypress.Commands.add('removeFirstProductFromCart', () => {
+  cy.get('.checkoutProduct__info > button')
+    .first()
+    .click()
+})

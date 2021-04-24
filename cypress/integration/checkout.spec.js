@@ -16,12 +16,7 @@ describe('Checkout', () => {
     beforeEach(() => {
       cy.visit('/')
 
-      Cypress._.times(2, () => {
-        cy.get('.product button')
-          .first()
-          .click()
-      })
-
+      cy.addTwoProductsToTheCart()
       cy.get('.header__link[href="/checkout"]')
         .click()
     })
@@ -45,9 +40,7 @@ describe('Checkout', () => {
       cy.get('.checkoutProduct')
         .should('have.length', 2)
 
-      cy.get('.checkoutProduct__info > button')
-        .first()
-        .click()
+      cy.removeFirstProductFromCart()
 
       cy.get('.checkoutProduct')
         .should('have.length', 1)
@@ -58,9 +51,7 @@ describe('Checkout', () => {
         .should('have.length', 2)
 
       Cypress._.times(2, () => {
-        cy.get('.checkoutProduct__info > button')
-          .first()
-          .click()
+        cy.removeFirstProductFromCart()
       })
 
       cy.get('.checkoutProduct')

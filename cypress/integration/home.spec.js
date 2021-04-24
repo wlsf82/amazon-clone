@@ -5,11 +5,7 @@ describe('Home', () => {
     cy.get('.product')
       .should('have.length', 5)
 
-    Cypress._.times(2, () => {
-      cy.get('.product button')
-        .first()
-        .click()
-    })
+    cy.addTwoProductsToTheCart()
 
     cy.get('.header__basketCount')
       .should('be.visible')
