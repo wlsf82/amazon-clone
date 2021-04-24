@@ -21,8 +21,7 @@ describe('Checkout', () => {
         .contains('Your shopping basket')
         .should('be.visible')
 
-      cy.get('.checkoutProduct')
-        .should('have.length', 2)
+      cy.assertItHasNProducts(2)
       cy.get('.checkoutProduct')
         .first()
         .should('be.visible')
@@ -32,25 +31,21 @@ describe('Checkout', () => {
     })
 
     it('update numbers of products when removing one of them', () => {
-      cy.get('.checkoutProduct')
-        .should('have.length', 2)
+      cy.assertItHasNProducts(2)
 
       cy.removeFirstProductFromTheCart()
 
-      cy.get('.checkoutProduct')
-        .should('have.length', 1)
+      cy.assertItHasNProducts(1)
     })
 
     it('updates to empty cart when removing all products', () => {
-      cy.get('.checkoutProduct')
-        .should('have.length', 2)
+      cy.assertItHasNProducts(2)
 
       Cypress._.times(2, () => {
         cy.removeFirstProductFromTheCart()
       })
 
-      cy.get('.checkoutProduct')
-        .should('have.length', 0)
+      cy.assertItHasNProducts(0)
       cy.assertThatCartIsEmpty()
     })
   })

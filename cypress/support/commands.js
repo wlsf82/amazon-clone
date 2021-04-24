@@ -31,6 +31,11 @@ Cypress.Commands.add('assertCartHasNProducts', n => {
     .and('have.text', `${n}`)
 })
 
+Cypress.Commands.add('assertItHasNProducts', n => {
+  cy.get('.checkoutProduct')
+    .should('have.length', n)
+})
+
 Cypress.Commands.add('assertThatCartIsEmpty', () => {
   cy.get('h2')
     .contains('Your shopping basket is empty')
