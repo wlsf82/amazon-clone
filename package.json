@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cypress run",
+    "test": "cypress run --reporter nyan",
     "cy:open": "cypress open"
   },
   "eslintConfig": {
