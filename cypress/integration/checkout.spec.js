@@ -3,12 +3,7 @@ describe('Checkout', () => {
     beforeEach(() => cy.visit('/checkout'))
 
     it('shows not product on empty cart', () => {
-      cy.get('h2')
-        .contains('Your shopping basket is empty')
-        .should('be.visible')
-      cy.get('p')
-        .contains('You have no items in your basket. To buy one or add item to basket click the add to basket button')
-        .should('be.visible')
+      cy.assertThatCartIsEmpty()
     })
   })
 
@@ -56,9 +51,7 @@ describe('Checkout', () => {
 
       cy.get('.checkoutProduct')
         .should('have.length', 0)
-      cy.get('h2')
-        .contains('Your shopping basket is empty')
-        .should('be.visible')
+      cy.assertThatCartIsEmpty()
     })
   })
 })

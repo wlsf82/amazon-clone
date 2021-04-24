@@ -24,3 +24,15 @@ Cypress.Commands.add('removeFirstProductFromTheCart', () => {
     .first()
     .click()
 })
+
+Cypress.Commands.add('assertThatCartIsEmpty', () => {
+  cy.get('h2')
+    .contains('Your shopping basket is empty')
+    .should('be.visible')
+  cy.get('p')
+    .contains('You have no items in your basket. To buy one or add item to basket click the add to basket button')
+    .should('be.visible')
+  cy.get('.header__basketCount')
+    .should('be.visible')
+    .and('have.text', '0')
+})
