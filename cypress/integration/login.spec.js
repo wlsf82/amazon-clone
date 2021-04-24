@@ -31,10 +31,26 @@ describe('Login', () => {
   it('successfully logs in', () => {
     cy.login(Cypress.env('user_email'), Cypress.env('user_password'))
 
+    assertUserIsLoggedIn()
+  })
+
+  it('successfully logs out', () => {
+    cy.login(Cypress.env('user_email'), Cypress.env('user_password'))
+
+    assertUserIsLoggedIn()
+
+    cy.get('.header__optionLineTwo')
+      .contains('Sign Out')
+      .click()
+
+    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/login`)
+  })
+
+  function assertUserIsLoggedIn() {
     cy.get('.header__optionLineOne')
       .contains(`Hello ${Cypress.env('user_email')}`)
       .should('be.visible')
-  })
+  }
 
   context('Create acount', () => {
     it('alerts about already existing user', () => {
